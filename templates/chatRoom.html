@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .darker {
+            border-color: #ccc;
+            background-color: #ddd;
+        }
+
+        .container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .container img {
+            float: left;
+            max-width: 60px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+
+        .time-right {
+            float: right;
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2><p class="text-center">Chat Messages</p></h2>
+{% for i in date %}
+    {% if i.name == 'Mary' %}
+        <div class="container ">
+            <h5>{{ i.name }}</h5>
+            <p>{{ i.messages }}</p>
+            <span class="time-right">{{ i.date_time }}</span>
+        </div>
+    {% endif %}
+    {% if i.name == 'Jack' %}
+        <div class="container darker">
+            <h5>{{ i.name }}</h5>
+            <p>{{ i.messages }}</p>
+            <span class="time-right">{{ i.date_time }}</span>
+        </div>
+    {% endif %}
+{% endfor %}
+<div class="container">
+    <form name="test" method="POST" action="add_DB_messages/db">
+        {% csrf_token %}
+
+        <input class="form-control" type="text" name="messages">
+        <br>
+        <button type="submit" id="but" class="btn btn-primary float-right">Submit</button>
+
+    </form>
+</div>
+</body>
+<script>
+
+</script>
+</html>
