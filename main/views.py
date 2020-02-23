@@ -28,6 +28,8 @@ def entrance(request):
             ).save()
 
             return HttpResponseRedirect("/chatRoom/")
+        else:
+            return HttpResponse("Ваши логин и пароль не соответствуют.")
 
     except Login.DoesNotExist:
 
