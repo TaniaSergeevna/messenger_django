@@ -1,6 +1,6 @@
 # messenger_django
 
-Technology : backend(Python 3.6,Django), BD(SQLite), frontend(HTML, CSS, Bootstrap 4)
+Technology : backend(Python 3.6,Django), database(SQLite), frontend(HTML, CSS, Bootstrap 4)
 
 This project can be run on any computer with any OS. To ran we need install Python ( https://www.python.org/downloads/), 
 install Django (pip install Django).
