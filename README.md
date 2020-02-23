@@ -1,13 +1,6 @@
 # messenger_django
 
-Technology :
-
--Python 3.6
--Django
--SQLite
--HTML
--CSS
--Bootstrap 4
+Technology : backend(Python 3.6,Django), BD(SQLite), frontend(HTML, CSS, Bootstrap 4)
 
 This project can be run on any computer with any OS. To ran we need install Python ( https://www.python.org/downloads/), 
 install Django (pip install Django).
@@ -27,5 +20,8 @@ Messenger(use to store messenger).
 We carry out migrations(python manage.py makemigrations)(python manage.py migrate) and create createsuperuser
 (python manage.py createsuperuser), urls, views,templates.
 
-
+Links:
+https://tutorial.djangogirls.org/ru/django_models/
+https://python-scripts.com/random
+https://docs.djangoproject.com/en/3.0/topics/http/sessions/
 
