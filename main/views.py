@@ -1,3 +1,5 @@
+import hashlib
+
 from django.http import HttpResponseRedirect, HttpResponse
 
 from django.shortcuts import render
@@ -19,7 +21,9 @@ def entrance(request):
     try:
 
         m = Login.objects.get(email=request.POST['email'])
-        if m.password == request.POST['password']:
+        password = request.POST['password']
+        if m.password == \
+                hashlib.sha1(str(password).encode('utf-8')).hexdigest():
             request.session['member_id'] = m.id + random.randint(0, 1000)
             Session(
                 name=m.name,
@@ -45,6 +49,7 @@ def add_DB_messages(request):
                     Messages(
                         name=data.name,
                         messages=request.POST.get('messages'),
+
                     ).save()
 
     return HttpResponseRedirect("/chatRoom/")
