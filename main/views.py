@@ -1,55 +1,28 @@
-import hashlib
-
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 
 from django.shortcuts import render
-from django.utils.crypto import random
 
-from .models import Login, Messages, Session
-
-
-def login(request):
-    return render(request, 'entrance.html')
+from .models import User, Messages
 
 
 def chatRoom(request):
-    date = Messages.objects.all()
-    return render(request, 'chatRoom.html', {'date': date})
-
-
-def entrance(request):
-    try:
-
-        m = Login.objects.get(email=request.POST['email'])
-        password = request.POST['password']
-        if m.password == \
-                hashlib.sha1(str(password).encode('utf-8')).hexdigest():
-            request.session['member_id'] = m.id + random.randint(0, 1000)
-            Session(
-                name=m.name,
-                session=request.session['member_id']
-
-            ).save()
-
-            return HttpResponseRedirect("/chatRoom/")
-        else:
-            return HttpResponse("Ваши логин и пароль не соответствуют.")
-
-    except Login.DoesNotExist:
-
-        return HttpResponse("Ваши логин и пароль не соответствуют.")
+    if request.session.keys():
+        date = Messages.objects.all()
+        return render(request, 'chatRoom.html', {'date': date})
+    else:
+        return HttpResponseRedirect("/login/")
 
 
 def add_DB_messages(request):
-    dates = Session.objects.all()
+    dates = User.objects.all()
     for data in dates:
-        if data.session == request.session['member_id']:
+        if data.get_session_auth_hash() == request.session['_auth_user_hash']:
             if request.method == "POST":
                 if request.POST.get('messages') != '':
                     Messages(
-                        name=data.name,
+                        name=data.first_name,
                         messages=request.POST.get('messages'),
 
                     ).save()
 
-    return HttpResponseRedirect("/chatRoom/")
+    return HttpResponseRedirect("/login/chatRoom/")
