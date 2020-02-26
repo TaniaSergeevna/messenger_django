@@ -104,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 LOGIN_REDIRECT_URL = 'chatRoom/'
 
 LANGUAGE_CODE = 'en-us'

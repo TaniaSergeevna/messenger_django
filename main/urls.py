@@ -8,7 +8,8 @@ from . import views as vs
 # pass4321word
 urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
     path('login/chatRoom/', vs.chatRoom, name='chatRoom'),
+    path('login/chatRoom/logout', views.LogoutView.as_view(), name='logout'),
+
     path('login/chatRoom/add_DB_messages/db', vs.add_DB_messages, name="chatRoom/add_DB_messages/db"),
 ]

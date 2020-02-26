@@ -14,15 +14,19 @@ def chatRoom(request):
 
 
 def add_DB_messages(request):
-    dates = User.objects.all()
-    for data in dates:
-        if data.get_session_auth_hash() == request.session['_auth_user_hash']:
-            if request.method == "POST":
-                if request.POST.get('messages') != '':
-                    Messages(
-                        name=data.first_name,
-                        messages=request.POST.get('messages'),
+    if request.session.keys():
+        dates = User.objects.all()
+        for data in dates:
+            if data.get_session_auth_hash() == request.session['_auth_user_hash']:
+                if request.method == "POST":
+                    if request.POST.get('messages') != '':
+                        Messages(
+                            name=data.first_name,
+                            messages=request.POST.get('messages'),
 
-                    ).save()
+                        ).save()
 
-    return HttpResponseRedirect("/login/chatRoom/")
+        return HttpResponseRedirect("/login/chatRoom/")
+    else:
+        return HttpResponseRedirect("/login/")
+

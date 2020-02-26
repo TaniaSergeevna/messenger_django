@@ -49,6 +49,12 @@
     </style>
 </head>
 <body>
+<form action="logout">
+    {% csrf_token %}
+
+    <button href="{% url 'login' %}" type="submit" id="but" class="btn btn-primary float-right">logout</button>
+
+</form>
 
 <h2><p class="text-center">Chat Messages</p></h2>
 {% for i in date %}
@@ -76,6 +82,7 @@
         <button type="submit" id="but" class="btn btn-primary float-right">Submit</button>
 
     </form>
+
 </div>
 </body>
 <script>
