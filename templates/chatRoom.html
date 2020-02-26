@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Refresh" content="10"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -49,43 +51,45 @@
     </style>
 </head>
 <body>
-<form action="logout">
-    {% csrf_token %}
+<form action="/logout">
 
-    <button href="{% url 'login' %}" type="submit" id="but" class="btn btn-primary float-right">logout</button>
+    <button type="submit" id="but" class="btn btn-primary float-right">logout</button>
 
 </form>
 
 <h2><p class="text-center">Chat Messages</p></h2>
 {% for i in date %}
+
     {% if i.name == 'Mary' %}
+
         <div class="container ">
             <h5>{{ i.name }}</h5>
             <p>{{ i.messages }}</p>
             <span class="time-right">{{ i.date_time }}</span>
         </div>
+
     {% endif %}
     {% if i.name == 'Jack' %}
+
         <div class="container darker">
             <h5>{{ i.name }}</h5>
             <p>{{ i.messages }}</p>
             <span class="time-right">{{ i.date_time }}</span>
         </div>
+
     {% endif %}
+
 {% endfor %}
 <div class="container">
     <form name="test" method="POST" action="add_DB_messages/db">
+
         {% csrf_token %}
 
-        <input class="form-control" type="text" name="messages">
+        <input class="form-control" type="text" name="messages"/>
         <br>
         <button type="submit" id="but" class="btn btn-primary float-right">Submit</button>
 
     </form>
-
 </div>
 </body>
-<script>
-
-</script>
 </html>

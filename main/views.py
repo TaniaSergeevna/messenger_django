@@ -10,7 +10,7 @@ def chatRoom(request):
         date = Messages.objects.all()
         return render(request, 'chatRoom.html', {'date': date})
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/")
 
 
 def add_DB_messages(request):
@@ -26,7 +26,7 @@ def add_DB_messages(request):
 
                         ).save()
 
-        return HttpResponseRedirect("/login/chatRoom/")
+        return HttpResponseRedirect("/chatRoom/")
     else:
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/")
 
