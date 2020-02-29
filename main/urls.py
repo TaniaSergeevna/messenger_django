@@ -6,9 +6,13 @@ from . import views as vs
 # pass1234word
 # login Jack@ukr.net
 # pass4321word
+# Tatiana@ukr.net
+# pass2710word
 urlpatterns = [
-    path('', views.LoginView.as_view(), name='login'),
+    path('', vs.base, name='base'),
+    path('register/', vs.register, name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('chatRoom/', vs.chatRoom, name='chatRoom'),
-    path('chatRoom/add_DB_messages/db', vs.add_DB_messages, name="chatRoom/add_DB_messages/db"),
+    path('login/chatRoom/', vs.chatRoom, name='chatRoom'),
+    path('login/chatRoom/add_DB_messages/db', vs.add_DB_messages, name="chatRoom/add_DB_messages/db"),
 ]

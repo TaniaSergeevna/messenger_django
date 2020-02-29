@@ -1,6 +1,8 @@
-{% extends  'base.html' %}
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
+
 {% block menu %}
+
     <li class="nav-item active">
         <a class="nav-link" href="{% url 'base' %}">Home <span class="sr-only">(current)</span></a>
     </li>
@@ -12,24 +14,25 @@
         <a class="nav-link" href="{% url 'register' %}">Sign up
         </a>
     </li>
+
 {% endblock %}
+
 {% block main %}
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Log in to your account</h4>
+                    <h4 class="card-title">Create account</h4>
+                    <form action="." method="post">
+                        {{ user_form|crispy }}
 
-                    <form method="post">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ next }}">
-
-                        {{ form|crispy }}
-
-                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                        <button type="submit" class="btn btn-primary btn-block">Create account</button>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
+
 {% endblock %}

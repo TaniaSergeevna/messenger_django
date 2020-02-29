@@ -1,95 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Refresh" content="10"/>
+{% extends 'base.html' %}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% block menu %}
 
+    <li class="nav-item">
+        <a class="nav-link disabled" href="{% url 'logout' %}">
+            Sign Out</a>
+    </li>
 
-    <style>
-        body {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 0 20px;
-        }
+{% endblock %}
 
-        .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
+{% block main %}
 
-        .darker {
-            border-color: #ccc;
-            background-color: #ddd;
-        }
+    <base>
+    <h2><p class="text-center">Chat Messages</p></h2>
+    {% for i in date %}
 
-        .container::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .container img {
-            float: left;
-            max-width: 60px;
-            width: 100%;
-            margin-right: 20px;
-            border-radius: 50%;
-        }
-
-
-        .time-right {
-            float: right;
-            color: #aaa;
-        }
-
-    </style>
-</head>
-<body>
-<form action="/logout">
-
-    <button type="submit" id="but" class="btn btn-primary float-right">logout</button>
-
-</form>
-
-<h2><p class="text-center">Chat Messages</p></h2>
-{% for i in date %}
-
-    {% if i.name == 'Mary' %}
-
-        <div class="container ">
+        <div class="containers ">
             <h5>{{ i.name }}</h5>
             <p>{{ i.messages }}</p>
             <span class="time-right">{{ i.date_time }}</span>
         </div>
 
-    {% endif %}
-    {% if i.name == 'Jack' %}
+        {#            <div class="containers darker">#}
+        {#                <h5>{{ i.name }}</h5>#}
+        {#                <p>{{ i.messages }}</p>#}
+        {#                <span class="time-right">{{ i.date_time }}</span>#}
+        {#            </div>#}
 
-        <div class="container darker">
-            <h5>{{ i.name }}</h5>
-            <p>{{ i.messages }}</p>
-            <span class="time-right">{{ i.date_time }}</span>
-        </div>
 
-    {% endif %}
+    {% endfor %}
+    <div class="containers">
+        <form name="test" method="POST" action="add_DB_messages/db">
 
-{% endfor %}
-<div class="container">
-    <form name="test" method="POST" action="add_DB_messages/db">
+            {% csrf_token %}
 
-        {% csrf_token %}
+            <input class="form-control" type="text" name="messages"/>
+            <br>
+            <button type="submit" id="but" class="btn btn-primary float-right">Submit</button>
+        </form>
+    </div>
+    </base>
 
-        <input class="form-control" type="text" name="messages"/>
-        <br>
-        <button type="submit" id="but" class="btn btn-primary float-right">Submit</button>
-
-    </form>
-</div>
-</body>
-</html>
+{% endblock %}

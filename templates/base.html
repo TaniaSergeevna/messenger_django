@@ -1,17 +1,30 @@
 <!doctype  html>
-<html  lang="en">
+{% load staticfiles %}
+
+<html lang="en">
 <head>
-<link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
-<title>Django Authentication Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/chat_style.css' %}"/>
+    <title>Django Messenger</title>
 </head>
 <body>
-  <div  class="container">
-    <div  class="row justify-content-center">
-      <div  class="col-6">
-      {% block main %}
-      {% endblock %}
-      </div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            {% block menu %}
+            {% endblock %}
+
+        </ul>
     </div>
-  </div>
+</nav>
+
+<div class="container">
+    {% block main %}
+    {% endblock %}
+</div>
+</div>
 </body>
 </html>
